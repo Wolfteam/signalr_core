@@ -11,3 +11,6 @@ build/
 doc/api/
 
 .vscode/
+
+# FVM Version Cache
+.fvm/
