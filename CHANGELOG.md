@@ -1,3 +1,23 @@
+## 1.2.0
+
+- Require `equatable ^3.0.0`. `EquatableMixin` was removed upstream; `CompletionMessage`
+  and `PingMessage` now mix in `Equatable` directly. Behavioural consequence verified against
+  the resolved 3.0.0 source: the automatic `toString` override still exists, but is now gated
+  on `stringify ?? EquatableConfig.stringify` (which defaults to `false`), so
+  `CompletionMessage`/`PingMessage` `toString()` now returns the default `Instance of '...'`
+  instead of the bare class name. (Note: equatable's own CHANGELOG also claims 3.0.0 drops the
+  `runtimeType` check in `==`, but the published 3.0.0 source and a runtime check both show the
+  `runtimeType` check is still present and enforced — two different `Equatable` subclasses with
+  equal `props` still compare unequal.)
+- Require `sse_channel ^0.2.2`. `SseChannel.stream` now emits `MessageEvent` objects (exported
+  from `package:sse_channel/sse_channel.dart`; the fields are `data`, `event`, and `id` as
+  described upstream, though the type itself is named `MessageEvent`, not `Event`), so the
+  server-sent-events transport reads `event.data`.
+- Bump `http` to `^1.6.0`, `web_socket_channel` to `^3.0.3`.
+- Dev: `lints` to `^6.1.0`, `test` to `^1.33.0`.
+- Flutter pin moved to 3.47.7.
+- No public API changes.
+
 ## 1.0.0
 
 - Initial version, created by Stagehand

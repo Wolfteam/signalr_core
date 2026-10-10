@@ -123,7 +123,7 @@ class StreamItemMessage extends HubInvocationMessage {
 }
 
 /// A hub message representing the result of an invocation.
-class CompletionMessage extends HubInvocationMessage with EquatableMixin {
+class CompletionMessage extends HubInvocationMessage with Equatable {
   CompletionMessage(
       {this.error, this.result, super.headers, super.invocationId})
       : super(type: MessageType.completion);
@@ -142,7 +142,7 @@ class CompletionMessage extends HubInvocationMessage with EquatableMixin {
 }
 
 /// A hub message indicating that the sender is still active.
-class PingMessage extends HubMessage with EquatableMixin {
+class PingMessage extends HubMessage with Equatable {
   PingMessage() : super(type: MessageType.ping);
 
   @override
